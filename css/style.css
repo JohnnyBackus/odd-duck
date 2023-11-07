@@ -1,0 +1,22 @@
+.container {  display: grid;
+  grid-template-columns: 0.8fr 1fr 1fr 1fr;
+  grid-template-rows: 1fr 2.5fr 2fr 1fr;
+  gap: 0px 0px;
+  grid-auto-flow: row;
+}
+
+.footer { grid-area: 4 / 1 / 5 / 5; }
+
+.header { grid-area: 1 / 1 / 2 / 5; }
+
+.voteTally { grid-area: 2 / 1 / 4 / 2; }
+
+.productImages { grid-area: 2 / 2 / 3 / 5; }
+
+.companyBio { grid-area: 3 / 2 / 4 / 5; }
+
+.product1 { grid-area: 2 / 2 / 3 / 3; }
+
+.product2 { grid-area: 2 / 3 / 3 / 4; }
+
+.product3 { grid-area: 2 / 4 / 3 / 5; }
