@@ -5,15 +5,30 @@
   grid-auto-flow: row;
 }
 
-.footer { grid-area: 4 / 1 / 5 / 5; }
+.footer {
+  background-color: chocolate;
+  grid-area: 4 / 1 / 5 / 5;
+}
 
-.header { grid-area: 1 / 1 / 2 / 5; }
+.header {
+  background-color: chocolate;
+  grid-area: 1 / 1 / 2 / 5;
+}
 
-.voteTally { grid-area: 2 / 1 / 4 / 2; }
+.voteTally {
+  background-color: aqua;
+  grid-area: 2 / 1 / 4 / 2;
+}
 
-.productImages { grid-area: 2 / 2 / 3 / 5; }
+.productImages {
+  background-color: antiquewhite;
+  grid-area: 2 / 2 / 3 / 5;
+}
 
-.companyBio { grid-area: 3 / 2 / 4 / 5; }
+.companyBio {
+  background-color: darkkhaki;
+  grid-area: 3 / 2 / 4 / 5;
+}
 
 .product1 { grid-area: 2 / 2 / 3 / 3; }
 
