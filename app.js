@@ -1,22 +1,22 @@
 const oddDucksContainer = document.getElementById('productImages');
 const reportContainer = document.getElementById('report');
-// querySelectorAll = list of elements
-// querySelector = 1 element
+const voteTally = document.getElementById('voteTallyList');
+
 const image1 = document.getElementById('product1');
 const image2 = document.getElementById('product2');
 const image3 = document.getElementById('product3');
 
 const button = document.getElementById("viewResults");
-let numRoundsOfVoting = 5;
-// The global "State" of the application
+let roundsOfVotingLimit = 25;
+
+
 let state = {
   numClicksSoFar: 0,
-  numClicksAllowed: numRoundsOfVoting,
+  numClicksAllowed: roundsOfVotingLimit,
   allProducts: [],
 };
 
 
-// Constructor
 function Product(name, image) {
   this.name = name;
   this.imageFile = image;
@@ -25,11 +25,7 @@ function Product(name, image) {
   state.allProducts.push(this);
 }
 
-
-// Helper Functions
-
 function renderProducts() {
-  // pick 2 random goats from our array
 
   function pickRandomProduct() {
     return Math.floor(Math.random() * state.allProducts.length);
@@ -39,7 +35,6 @@ function renderProducts() {
   let product2 = pickRandomProduct();
   let product3 = pickRandomProduct();
 
-
   while(product1 === product2) {
     product2 = pickRandomProduct();
   }
@@ -48,8 +43,6 @@ function renderProducts() {
     product3 = pickRandomProduct();
   }
 
-  // put the goats on screen
-  // <img src="" alt="" />
   image1.src = state.allProducts[product1].imageFile;
   image1.alt = state.allProducts[product1].name;
 
@@ -62,22 +55,25 @@ function renderProducts() {
   state.allProducts[product1].views++;
   state.allProducts[product2].views++;
   state.allProducts[product3].views++;
-
 }
 
-function renderResultsButton() {
-  button.style.display = 'block';
+function hideResultsButton() {
+  button.style.display = 'none';
 }
 
 function renderResults() {
-  console.log('Showing the results');
+  for (let i = 0; i < state.allProducts.length; i++) {
+    const li = document.createElement('li');
+    li.textContent = `${state.allProducts[i].name}: ${state.allProducts[i].views} views; ${state.allProducts[i].votes} votes`;
+    voteTally.appendChild(li);
+  }
 }
-
+function alertRefresh() {
+  alert('Thanks for voting! We will show your vote tally now. Please refresh the page when you\'re done, so the next person can vote.');
+}
 function handleClick(event) {
-  // Get the name from the alt tage of the image
   let productName = event.target.alt;
 
-  // Loop the array and find that goat, update the vote and stop
   for (let i = 0; i < state.allProducts.length; i++) {
     if(productName === state.allProducts[i].name ) {
       state.allProducts[i].votes++;
@@ -85,34 +81,29 @@ function handleClick(event) {
     }
   }
 
-
   state.numClicksSoFar++;
 
   if(state.numClicksSoFar >= state.numClicksAllowed) {
-    // remove the event handler
     removeListener();
-    // show the button which would let you render the results
-    renderResultsButton();
+    renderResults();
+    hideResultsButton();
+    alertRefresh();
   } else {
     renderProducts();
   }
 }
 
 function setupListeners() {
-  oddDucksContainer.addEventListener("click", handleClick);
-  button.addEventListener("click", renderResults);
-
-  // Alternatively: have an event listener oneach images
-  // image1.addEventListener("click", handleClick);
-  // image2.addEventListener("click", handleClick);
+  oddDucksContainer.addEventListener('click', handleClick);
+  button.addEventListener('click', renderResults);
+  button.addEventListener('click', hideResultsButton);
+  button.addEventListener('click', alertRefresh);
 }
 
 function removeListener() {
-  oddDucksContainer.removeEventListener("click", handleClick);
+  oddDucksContainer.removeEventListener('click', handleClick);
 }
 
-// Do I need to make these into variables????
-// If not (hint), how can I do it without making them variables?
 new Product('bag', 'img/bag.jpg');
 new Product('banana', 'img/banana.jpg');
 new Product('bathroom', 'img/bathroom.jpg');
