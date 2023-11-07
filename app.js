@@ -56,6 +56,7 @@ function renderProducts() {
   state.allProducts[product2].views++;
   state.allProducts[product3].views++;
 }
+// debugger;
 
 function hideResultsButton() {
   button.style.display = 'none';
@@ -128,4 +129,3 @@ new Product('wine-glass', 'img/wine-glass.jpg');
 renderProducts();
 setupListeners();
 
-// debugger;
