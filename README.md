@@ -8,7 +8,7 @@ Setting up a voting system for beloved products.
 
 ### Links and Resources
 
-* n/a at the time of this submission.
+* About Us authored by ChatGPT
 
 ### Lighthouse Accessibility Report Score
 
