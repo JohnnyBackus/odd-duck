@@ -66,11 +66,11 @@ function renderProducts() {
 }
 
 function renderResultsButton() {
-  button.style.display = "block";
+  button.style.display = 'block';
 }
 
 function renderResults() {
-  console.log("Showing the results");
+  console.log('Showing the results');
 }
 
 function handleClick(event) {
