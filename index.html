@@ -2,23 +2,33 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8">
-    <title>Odd Duck Products</title>
-    <link rel="stylesheet" href="styles/reset.css" />
-    <link rel="stylesheet" href="styles/style.css" />
+    <title>Odd Duck Produckts</title>
+    <link rel="stylesheet" href="CSS/reset.css" />
+    <link rel="stylesheet" href="CSS/style.css" />
   </head>
-
-  <body>
-    <header>
-      <h1>Placeholder</h1>
+  <body class="container">
+    <header class="header">
+      <h1>Odd Duck Produckts, Inc</h1>
     </header>
-
-    <main>
-
+    <main class="main">
+      <div class="voteTally">
+        <h2>Your Votes</h2>
+        <ul id="voteTallyList"></ul>
+        <button id="viewResults">View Results</button>
+        <section id="report"></section>
+      </div>
+      <section class ="aboutCompany">
+        <div class="productImages" id ="productImages">
+          <img id="product1">
+          <img id="product2">
+          <img id="product3">
+        </div>
+        <article class="companyBio"></article>
+      </section>
     </main>
-
-    <footer>
-      &copy 2023 Odd Duck Products Inc
+    <footer class="footer">
+      &copy 2023 Odd Duck Produckts Inc
     </footer>
-    <script src="app.js"></script>
+  <script src="app.js"></script>
   </body>
-  </html>
+</html>
