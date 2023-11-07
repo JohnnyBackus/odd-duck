@@ -5,29 +5,28 @@
   grid-auto-flow: row;
 }
 
-.footer {
-  background-color: chocolate;
-  grid-area: 4 / 1 / 5 / 5;
-}
-
 .header {
   background-color: chocolate;
   grid-area: 1 / 1 / 2 / 5;
+}
+
+.main {
+  display: grid;
+  grid-area: 2 / 1 / 4 / 5;
 }
 
 .voteTally {
   background-color: aqua;
   grid-area: 2 / 1 / 4 / 2;
 }
-
+.aboutCompany {
+  /* display: grid; */
+  background-color: darkkhaki;
+  grid-area: 2 / 2 / 4 / 5;
+}
 .productImages {
   background-color: antiquewhite;
   grid-area: 2 / 2 / 3 / 5;
-}
-
-.companyBio {
-  background-color: darkkhaki;
-  grid-area: 3 / 2 / 4 / 5;
 }
 
 .product1 { grid-area: 2 / 2 / 3 / 3; }
@@ -35,3 +34,13 @@
 .product2 { grid-area: 2 / 3 / 3 / 4; }
 
 .product3 { grid-area: 2 / 4 / 3 / 5; }
+
+.companyBio {
+  grid-area: 3 / 2 / 4 / 5;
+}
+
+
+.footer {
+  background-color: chocolate;
+  grid-area: 4 / 1 / 5 / 5;
+}
