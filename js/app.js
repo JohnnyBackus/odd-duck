@@ -34,13 +34,24 @@ function renderProducts() {
   let product1 = pickRandomProduct();
   let product2 = pickRandomProduct();
   let product3 = pickRandomProduct();
+  let product4 = pickRandomProduct();
+  let product5 = pickRandomProduct();
+  let product6 = pickRandomProduct();
 
   while(product1 === product2) {
     product2 = pickRandomProduct();
   }
-
   while(product3 === product1 || product3 === product2) {
     product3 = pickRandomProduct();
+  }
+  while(product4 === product1 || product4 === product2 || product4 === product3) {
+    product4 = pickRandomProduct();
+  }
+  while(product5 === product1 || product5 === product2 || product5 === product3 || product5 === product4) {
+    product5 = pickRandomProduct();
+  }
+  while(product6 === product1 || product6 === product2 || product6 === product3 || product6 === product4 || product6 === product5) {
+    product6 = pickRandomProduct();
   }
 
   image1.src = state.allProducts[product1].imageFile;
@@ -56,7 +67,6 @@ function renderProducts() {
   state.allProducts[product2].views++;
   state.allProducts[product3].views++;
 }
-// debugger;
 
 function hideResultsButton() {
   button.style.display = 'none';
@@ -83,10 +93,6 @@ function renderChart() {
     productVotes.push( state.allProducts[i].votes );
     productViews.push( state.allProducts[i].views );
   }
-
-  // console.log(goatNames);
-  // console.log(goatLikes);
-  // console.log(goatViews);
 
   const data = {
     labels: productNames,
@@ -178,3 +184,5 @@ new Product('wine-glass', 'img/wine-glass.jpg');
 
 renderProducts();
 setupListeners();
+
+// debugger;
