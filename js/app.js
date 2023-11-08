@@ -1,5 +1,5 @@
 const oddDucksContainer = document.getElementById('productImages');
-const reportContainer = document.getElementById('report');
+const chartContainer = document.getElementById('chart');
 const voteTally = document.getElementById('voteTallyList');
 
 const image1 = document.getElementById('product1');
@@ -72,6 +72,54 @@ function renderResults() {
 function alertRefresh() {
   alert('Thanks for voting! We will show your vote tally now. Please refresh the page when you\'re done, so the next person can vote.');
 }
+
+function renderChart() {
+  let productNames = [];
+  let productVotes = [];
+  let productViews = [];
+
+  for( let i = 0; i < state.allProducts.length; i++ ) {
+    productNames.push( state.allProducts[i].name );
+    productVotes.push( state.allProducts[i].votes );
+    productViews.push( state.allProducts[i].views );
+  }
+
+  // console.log(goatNames);
+  // console.log(goatLikes);
+  // console.log(goatViews);
+
+  const data = {
+    labels: productNames,
+    datasets: [
+      {
+        label: 'Votes',
+        data: productVotes,
+        borderWidth: 1,
+        backgroundColor: ['gold'],
+      },
+      {
+        label: 'Views',
+        data: productViews,
+        borderWidth: 1,
+        backgroundColor: ['green']
+      }
+    ]
+  };
+
+  const config = {
+    type: 'bar',
+    data: data,
+    options: {
+      scales: {
+        y: {
+          beginAtZero: true
+        }
+      }
+    }
+  };
+  const voteChart = new Chart(chartContainer, config);
+}
+
 function handleClick(event) {
   let productName = event.target.alt;
 
@@ -87,6 +135,7 @@ function handleClick(event) {
   if(state.numClicksSoFar >= state.numClicksAllowed) {
     removeListener();
     renderResults();
+    renderChart();
     hideResultsButton();
     alertRefresh();
   } else {
@@ -97,6 +146,7 @@ function handleClick(event) {
 function setupListeners() {
   oddDucksContainer.addEventListener('click', handleClick);
   button.addEventListener('click', renderResults);
+  button.addEventListener('click', renderChart);
   button.addEventListener('click', hideResultsButton);
   button.addEventListener('click', alertRefresh);
 }
@@ -128,4 +178,3 @@ new Product('wine-glass', 'img/wine-glass.jpg');
 
 renderProducts();
 setupListeners();
-
