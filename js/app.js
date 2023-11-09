@@ -34,24 +34,12 @@ function renderProducts() {
   let product1 = pickRandomProduct();
   let product2 = pickRandomProduct();
   let product3 = pickRandomProduct();
-  let product4 = pickRandomProduct();
-  let product5 = pickRandomProduct();
-  let product6 = pickRandomProduct();
 
   while(product1 === product2) {
     product2 = pickRandomProduct();
   }
   while(product3 === product1 || product3 === product2) {
     product3 = pickRandomProduct();
-  }
-  while(product4 === product1 || product4 === product2 || product4 === product3) {
-    product4 = pickRandomProduct();
-  }
-  while(product5 === product1 || product5 === product2 || product5 === product3 || product5 === product4) {
-    product5 = pickRandomProduct();
-  }
-  while(product6 === product1 || product6 === product2 || product6 === product3 || product6 === product4 || product6 === product5) {
-    product6 = pickRandomProduct();
   }
 
   image1.src = state.allProducts[product1].imageFile;
@@ -137,6 +125,9 @@ function handleClick(event) {
   }
 
   state.numClicksSoFar++;
+  console.log(state);
+  console.log(JSON.stringify(state));
+  localStorage.setItem('state', JSON.stringify(state));
 
   if(state.numClicksSoFar >= state.numClicksAllowed) {
     removeListener();
@@ -161,6 +152,12 @@ function removeListener() {
   oddDucksContainer.removeEventListener('click', handleClick);
 }
 
+function init() {
+  let stateString = localStorage.getItem("state") || "";
+  state = JSON.parse(stateString);
+  console.log("Read the state", state);
+}
+
 new Product('bag', 'img/bag.jpg');
 new Product('banana', 'img/banana.jpg');
 new Product('bathroom', 'img/bathroom.jpg');
@@ -181,7 +178,7 @@ new Product('unicorn', 'img/unicorn.jpg');
 new Product('water-can', 'img/water-can.jpg');
 new Product('wine-glass', 'img/wine-glass.jpg');
 
-
+init();
 renderProducts();
 setupListeners();
 
