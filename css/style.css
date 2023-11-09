@@ -22,6 +22,9 @@ header {
 }
 
 h1 {
+  border-width: 5px;
+  border: black;
+  border-style: solid;
   font-size: 30pt;
 }
 
