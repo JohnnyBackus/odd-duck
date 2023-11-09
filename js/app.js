@@ -6,13 +6,12 @@ const image1 = document.getElementById('product1');
 const image2 = document.getElementById('product2');
 const image3 = document.getElementById('product3');
 
-const button = document.getElementById("viewResults");
+const button = document.getElementById('viewResults');
 let roundsOfVotingLimit = 25;
-
-
+let numClicksSoFar = 0;
+let lastThree = [999, 999, 999];
 let state = {
-  numClicksSoFar: 0,
-  numClicksAllowed: roundsOfVotingLimit,
+  totalRoundsOfVoting: 0,
   allProducts: [],
 };
 
@@ -35,15 +34,24 @@ function renderProducts() {
   let product2 = pickRandomProduct();
   let product3 = pickRandomProduct();
 
+  while (lastThree.includes(product1)) {
+    product1 = pickRandomProduct();
+  }
   while(product1 === product2) {
     product2 = pickRandomProduct();
   }
-  while(product3 === product1 || product3 === product2) {
+  while(product3 === product1 || product3 === product2 || lastThree.includes(product3)) {
     product3 = pickRandomProduct();
   }
+  console.log(lastThree);
+  lastThree.splice(0 , 3);
+  console.log(lastThree);
+  lastThree.push(product1, product2, product3);
+  console.log(lastThree);
 
   image1.src = state.allProducts[product1].imageFile;
   image1.alt = state.allProducts[product1].name;
+
 
   image2.src = state.allProducts[product2].imageFile;
   image2.alt = state.allProducts[product2].name;
@@ -56,19 +64,12 @@ function renderProducts() {
   state.allProducts[product3].views++;
 }
 
-function hideResultsButton() {
-  button.style.display = 'none';
-}
-
 function renderResults() {
   for (let i = 0; i < state.allProducts.length; i++) {
     const li = document.createElement('li');
     li.textContent = `${state.allProducts[i].name}: ${state.allProducts[i].views} views; ${state.allProducts[i].votes} votes`;
     voteTally.appendChild(li);
   }
-}
-function alertRefresh() {
-  alert('Thanks for voting! We will show your vote tally now. Please refresh the page when you\'re done, so the next person can vote.');
 }
 
 function renderChart() {
@@ -114,6 +115,14 @@ function renderChart() {
   const voteChart = new Chart(chartContainer, config);
 }
 
+function hideResultsButton() {
+  button.style.display = 'none';
+}
+
+function alertRefresh() {
+  alert('Thanks for voting! We will show your vote tally now. Please refresh the page when you\'re done, so the next person can vote.');
+}
+
 function handleClick(event) {
   let productName = event.target.alt;
 
@@ -123,13 +132,13 @@ function handleClick(event) {
       break;
     }
   }
-
-  state.numClicksSoFar++;
+  state.totalRoundsOfVoting++;
+  numClicksSoFar++;
   console.log(state);
   console.log(JSON.stringify(state));
   localStorage.setItem('state', JSON.stringify(state));
 
-  if(state.numClicksSoFar >= state.numClicksAllowed) {
+  if(numClicksSoFar >= roundsOfVotingLimit) {
     removeListener();
     renderResults();
     renderChart();
@@ -140,7 +149,7 @@ function handleClick(event) {
   }
 }
 
-function setupListeners() {
+function runListeners() {
   oddDucksContainer.addEventListener('click', handleClick);
   button.addEventListener('click', renderResults);
   button.addEventListener('click', renderChart);
@@ -153,9 +162,9 @@ function removeListener() {
 }
 
 function init() {
-  let stateString = localStorage.getItem("state") || "";
+  let stateString = localStorage.getItem('state') || '';
   state = JSON.parse(stateString);
-  console.log("Read the state", state);
+  console.log('Read the state', state);
 }
 
 new Product('bag', 'img/bag.jpg');
@@ -180,6 +189,6 @@ new Product('wine-glass', 'img/wine-glass.jpg');
 
 init();
 renderProducts();
-setupListeners();
+runListeners();
 
 // debugger;
