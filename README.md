@@ -1,8 +1,8 @@
-# LAB - 11 Odd Duck
+# LAB - 13 Odd Duck
 
-## Odd Duck Products
+## Adding Local Storage
 
-Setting up a voting system for beloved products.
+Keeoing track of multiple rounds of voting.
 
 ### Author: Johnny Backus
 
@@ -12,7 +12,13 @@ Setting up a voting system for beloved products.
 
 ### Lighthouse Accessibility Report Score
 
-![Lighthouse Accessibility Report Score 11-6](img/lighthouse_score_11-6.png)
+![Lighthouse Accessibility Report Score 11-8](img/lighthouse_score_11-8.png)
 
 ### Reflections and Comments
-I'm not there yet. I spent too long working on the grid layout (making grids within grids), but I do think the structure of this page is pretty solid. Still need to complete functions to render results, but not too far away. My styling in the preview is better in the GoLive than what is showing up on the deployed page, so I'm not sure what is going on there. This assignment took me about four and a half hours so far. My progress feels fairly in line with where I'd expect to be at this point.
+This went pretty well overall, although with all of the other assignments, I'm not spending as much time with this lab as I would have liked. Anywho, the HTML and JS work. Each set of three images will be different from the previous three. I also added a counter for total rounds of voting just for giggles, which I may display somehwere if I find some time. I still have a fair bit of work to do on the CSS.
+
+One important lesson learned is that if you make a syntax error on a line of code that is only read conditionally and that condition is dependent on a random number, and the error causes the site to freeze, but doesn't create an error message, it can take a looong time to figure out.
+
+The garish colors seemed fitting for such a weird company, but they definitely make my eyes bleed as well. I have no idea how I keep getting a 100 accessibility score. It must not be accounting for my chart labels.
+
+This lab represents about 3 hours of effort, which is about what I expected (and with the expectation that I would not get to fixing the CSS today.)
