@@ -15,7 +15,6 @@ let state = {
   allProducts: [],
 };
 
-
 function Product(name, image) {
   this.name = name;
   this.imageFile = image;
@@ -37,14 +36,14 @@ function renderProducts() {
   while (lastThree.includes(product1)) {
     product1 = pickRandomProduct();
   }
-  while(product1 === product2) {
+  while (product1 === product2) {
     product2 = pickRandomProduct();
   }
-  while(product3 === product1 || product3 === product2 || lastThree.includes(product3)) {
+  while (product3 === product1 || product3 === product2 || lastThree.includes(product3)) {
     product3 = pickRandomProduct();
   }
   console.log(lastThree);
-  lastThree.splice(0 , 3);
+  lastThree.splice(0, 3);
   console.log(lastThree);
   lastThree.push(product1, product2, product3);
   console.log(lastThree);
@@ -77,10 +76,10 @@ function renderChart() {
   let productVotes = [];
   let productViews = [];
 
-  for( let i = 0; i < state.allProducts.length; i++ ) {
-    productNames.push( state.allProducts[i].name );
-    productVotes.push( state.allProducts[i].votes );
-    productViews.push( state.allProducts[i].views );
+  for (let i = 0; i < state.allProducts.length; i++) {
+    productNames.push(state.allProducts[i].name);
+    productVotes.push(state.allProducts[i].votes);
+    productViews.push(state.allProducts[i].views);
   }
 
   const data = {
@@ -127,7 +126,7 @@ function handleClick(event) {
   let productName = event.target.alt;
 
   for (let i = 0; i < state.allProducts.length; i++) {
-    if(productName === state.allProducts[i].name ) {
+    if (productName === state.allProducts[i].name) {
       state.allProducts[i].votes++;
       break;
     }
@@ -138,7 +137,7 @@ function handleClick(event) {
   console.log(JSON.stringify(state));
   localStorage.setItem('state', JSON.stringify(state));
 
-  if(numClicksSoFar >= roundsOfVotingLimit) {
+  if (numClicksSoFar >= roundsOfVotingLimit) {
     removeListener();
     renderResults();
     renderChart();
@@ -161,36 +160,37 @@ function removeListener() {
   oddDucksContainer.removeEventListener('click', handleClick);
 }
 
-function init() {
+function initialize() {
   let stateString = localStorage.getItem('state') || '';
   if (stateString) {
-
+    state = JSON.parse(stateString);
+    console.log('Read the state', state);
   }
-  state = JSON.parse(stateString);
-  console.log('Read the state', state);
+  else {
+    new Product('bag', 'img/bag.jpg');
+    new Product('banana', 'img/banana.jpg');
+    new Product('bathroom', 'img/bathroom.jpg');
+    new Product('boots', 'img/boots.jpg');
+    new Product('breakfast', 'img/breakfast.jpg');
+    new Product('bubblegum', 'img/bubblegum.jpg');
+    new Product('chair', 'img/chair.jpg');
+    new Product('cthulchu', 'img/cthulhu.jpg');
+    new Product('dog-duck', 'img/dog-duck.jpg');
+    new Product('dragon', 'img/dragon.jpg');
+    new Product('pen', 'img/pen.jpg');
+    new Product('pet-sweep', 'img/pet-sweep.jpg');
+    new Product('scissors', 'img/scissors.jpg');
+    new Product('shark', 'img/shark.jpg');
+    new Product('sweep', 'img/sweep.png');
+    new Product('tauntaum', 'img/tauntaun.jpg');
+    new Product('unicorn', 'img/unicorn.jpg');
+    new Product('water-can', 'img/water-can.jpg');
+    new Product('wine-glass', 'img/wine-glass.jpg');
+  }
 }
 
-new Product('bag', 'img/bag.jpg');
-new Product('banana', 'img/banana.jpg');
-new Product('bathroom', 'img/bathroom.jpg');
-new Product('boots', 'img/boots.jpg');
-new Product('breakfast', 'img/breakfast.jpg');
-new Product('bubblegum', 'img/bubblegum.jpg');
-new Product('chair', 'img/chair.jpg');
-new Product('cthulchu', 'img/cthulhu.jpg');
-new Product('dog-duck', 'img/dog-duck.jpg');
-new Product('dragon', 'img/dragon.jpg');
-new Product('pen', 'img/pen.jpg');
-new Product('pet-sweep', 'img/pet-sweep.jpg');
-new Product('scissors', 'img/scissors.jpg');
-new Product('shark', 'img/shark.jpg');
-new Product('sweep', 'img/sweep.png');
-new Product('tauntaum', 'img/tauntaun.jpg');
-new Product('unicorn', 'img/unicorn.jpg');
-new Product('water-can', 'img/water-can.jpg');
-new Product('wine-glass', 'img/wine-glass.jpg');
 
-init();
+initialize();
 renderProducts();
 runListeners();
 
