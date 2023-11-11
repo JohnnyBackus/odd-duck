@@ -163,6 +163,9 @@ function removeListener() {
 
 function init() {
   let stateString = localStorage.getItem('state') || '';
+  if (stateString) {
+
+  }
   state = JSON.parse(stateString);
   console.log('Read the state', state);
 }
