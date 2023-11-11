@@ -1,8 +1,8 @@
-# LAB - 13 Odd Duck
+# LAB - 15B Odd Duck
 
-## Adding Local Storage
+## Brushing Up Errors
 
-Keeoing track of multiple rounds of voting.
+Putting some finishing touches on the page and fixing any js errors.
 
 ### Author: Johnny Backus
 
@@ -15,10 +15,9 @@ Keeoing track of multiple rounds of voting.
 ![Lighthouse Accessibility Report Score 11-8](img/lighthouse_score_11-8.png)
 
 ### Reflections and Comments
-This went pretty well overall, although with all of the other assignments, I'm not spending as much time with this lab as I would have liked. Anywho, the HTML and JS work. Each set of three images will be different from the previous three. I also added a counter for total rounds of voting just for giggles, which I may display somehwere if I find some time. I still have a fair bit of work to do on the CSS.
 
-One important lesson learned is that if you make a syntax error on a line of code that is only read conditionally and that condition is dependent on a random number, and the error causes the site to freeze, but doesn't create an error message, it can take a looong time to figure out.
+Corrected the JSON error by adding an else condition if 'state' is not already in local storage.
 
-The garish colors seemed fitting for such a weird company, but they definitely make my eyes bleed as well. I have no idea how I keep getting a 100 accessibility score. It must not be accounting for my chart labels.
+Because I did not change anything to the HTML or CSS of the website, I did not run a new report before submitting this lab today. I do intend to learn how to apply CSS to a chart, clean this up a bit and resubmit this weekend. If I follow through on my intentions, I will run a new Lighthouse Report.
 
-This lab represents about 3 hours of effort, which is about what I expected (and with the expectation that I would not get to fixing the CSS today.)
+This lab represents about 1 hour of effort to fix the JSON error, which is about what I hoped, but better than I expected... I didn't actually expect my first crack at it to work!
